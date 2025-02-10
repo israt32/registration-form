@@ -17,7 +17,8 @@ function App() {
         <Route path='/register' element={<Register/>}></Route>
         {/* protected route */}
         <Route path="/" element={<ProtectedRoutes></ProtectedRoutes>}>
-        <Route path='/' element={<Todolist/>}></Route>
+        {/* <Route path='/' element={<Todolist/>}></Route> */}
+        <Route index element={<Todolist />} />
         </Route>
     
 
