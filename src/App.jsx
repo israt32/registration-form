@@ -1,6 +1,6 @@
 import Login from './Components/Login'
 import Register from './Components/Register'
-import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom"
 import './App.css'
 import Todolist from './Pages/Todolist'
 import ProtectedRoutes from './Services/ProtectedRoutes'
