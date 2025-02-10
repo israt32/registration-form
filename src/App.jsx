@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
+      <HashRouter>
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
@@ -25,7 +25,7 @@ function App() {
 
 
       </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </>
   )
 }
