@@ -1,6 +1,6 @@
 import Login from './Components/Login'
 import Register from './Components/Register'
-import {BrowserRouter, Routes, Route, HashRouter} from "react-router-dom"
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 import './App.css'
 import Todolist from './Pages/Todolist'
 import ProtectedRoutes from './Services/ProtectedRoutes'
@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <HashRouter>
+      <BrowserRouter>
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
@@ -25,7 +25,7 @@ function App() {
 
 
       </Routes>
-      </HashRouter>
+      </BrowserRouter>
     </>
   )
 }

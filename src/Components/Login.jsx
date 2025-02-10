@@ -26,7 +26,7 @@ const Login = () => {
   }
   return(
     <div className="auth-form-container">
-      <h2>Login</h2>
+      <h2 className="title">Login</h2>
       <form className="login-form" onSubmit={handleLogin}>
 
         {/* input-email */}

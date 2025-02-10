@@ -9,6 +9,10 @@
   color: white;
 }
 
+.title{
+  text-align: center;
+}
+
 .auth-form-container, .login-form , .register-form{
   display: flex;
   flex-direction: column;

@@ -20,7 +20,7 @@ const Register = () => {
 
   return(
     <div  className="auth-form-container">
-      <h2>Register</h2>
+      <h2 className="title">Register</h2>
     <form className="register-form" onSubmit={handleSubmit}>
 
       {/* input-name */}
