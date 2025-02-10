@@ -11,6 +11,7 @@ function App() {
   return (
     <>
       <HashRouter>
+      {/* <BrowserRouter> */}
       <Routes>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/register' element={<Register/>}></Route>
@@ -25,6 +26,7 @@ function App() {
 
 
       </Routes>
+      {/* </BrowserRouter> */}
       </HashRouter>
     </>
   )
