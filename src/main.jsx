@@ -6,9 +6,9 @@ import { BrowserRouter } from 'react-router-dom';  // Import BrowserRouter
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    {/* <BrowserRouter basename={import.meta.env.BASE_URL}> */}
     <App />
-    </BrowserRouter>
+    {/* </BrowserRouter> */}
    
   </StrictMode>,
 )
