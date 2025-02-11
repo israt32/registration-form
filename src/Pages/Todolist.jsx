@@ -6,14 +6,23 @@ import { BsCheckLg } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 
 
+
+
+
+
 const Todolist = () => {
   const userName = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const handleLogout = () =>{
     localStorage.removeItem("loggedin");
+    // localStorage.removeItem("user"); // Optional: Clears user data too
     navigate("/login");
   }
- 
+    
+  // email validation
+  const user = JSON.parse(localStorage.getItem("user"));
+  const isAdmin = user?.email === "israt3@gmail.com";
+
 
 
   const [isCompleteScreen, setIsCompleteScreen] = useState(false);
@@ -25,6 +34,9 @@ const Todolist = () => {
   const [currentEditedItem, setCurrentEditedItem] = useState("");
 
   const handleAddTodo = () =>{
+    if (!isAdmin) return; // Restrict unauthorized users
+
+
     let newTodoItem ={
       title:newTitle,
       description: newDescription
@@ -42,6 +54,9 @@ const Todolist = () => {
   }
   
    const handleDeleteTodo = (index) =>{
+    if (!isAdmin) return; // Restrict unauthorized users
+
+    
      let reducedTodo = [...allTodos];
      reducedTodo.splice(index,1);
 
@@ -51,6 +66,9 @@ const Todolist = () => {
    }
 
    const handleComplete = (index)=>{
+
+    if (!isAdmin) return; // Restrict unauthorized users
+
     let now = new Date();
     let dd = now.getDate();
     let mm = now.getMonth();
@@ -73,6 +91,9 @@ const Todolist = () => {
    }
 
    const handleDeleteCompletedTodo = (index) =>{
+
+    if (!isAdmin) return; // Restrict unauthorized users
+
     let reducedTodo = [...completedTodos];
     reducedTodo.splice(index,1);
 
@@ -93,6 +114,8 @@ const Todolist = () => {
   },[])
 
   const handleEdit = (ind,item) =>{
+    if (!isAdmin) return; // Restrict unauthorized users
+
      setCurrentEdit(ind);
      setCurrentEditedItem(item);
   }
@@ -108,6 +131,8 @@ const Todolist = () => {
   }
 
   const handleUpdateTodo = () =>{
+    if (!isAdmin) return; // Restrict unauthorized users
+
     let newToDo  = [...allTodos];
     newToDo[currentEdit] = currentEditedItem;
     setTodos(newToDo);
@@ -118,6 +143,8 @@ const Todolist = () => {
     <div className="todo-container">
       <h3 className="todo-heading">{userName.name}'s Task List</h3>
       <div className="todo-wrapper">
+
+      {isAdmin && (
         <div className="todo-input">
           <div className="todo-input-item">
             <label htmlFor="">Title</label>
@@ -132,12 +159,17 @@ const Todolist = () => {
           </div>
         </div>
 
+           )}
+
+
         <div className="btn-area">
           <button className={`secondaryBtn ${isCompleteScreen===false && `active`}`} onClick={() =>setIsCompleteScreen(false)}>Todo</button>
           <button className={`secondaryBtn ${isCompleteScreen===true && `active`}`} onClick={() =>setIsCompleteScreen(true)}>Completed</button>
         </div>
         <div className="todo-list">
           
+
+
 
         {
            isCompleteScreen===false && allTodos.map((item, index)=>{
@@ -164,6 +196,9 @@ const Todolist = () => {
               <p>{item.description}</p>
               </div>
      
+
+          {/* ✅ Only show delete, edit, and complete icons if the user is an admin */}
+         {isAdmin && ( 
               <div>
               <AiOutlineDelete className="icon" onClick={()=>handleDeleteTodo(index)} title="Delete?"></AiOutlineDelete>
 
@@ -174,11 +209,18 @@ const Todolist = () => {
               <AiOutlineEdit  className="check-icon" onClick={()=>handleEdit(index,item)} title="Edit?"></AiOutlineEdit>
               </div>
      
+         )}
+
+
+
               </div>
                    )
                   }
             })
         }
+
+      
+
 
 
          {
@@ -192,20 +234,33 @@ const Todolist = () => {
          <p><small>Completed on: {item.completedOn}</small></p>
          </div>
 
+
+        {/* ✅ Only show delete icon if the user is an admin */}
+        {isAdmin && ( 
          <div>
          <AiOutlineDelete className="icon" onClick={()=>handleDeleteCompletedTodo(index)} title="Delete?"></AiOutlineDelete>
          </div>
+
+        )}
 
          </div>
               )
             })
         }
 
+
         </div>
+
+       
       </div>
+
+
       <button onClick={handleLogout} type="button" className="logoutBtn">Log Out</button>
+      
     </div>
   );
 };
 
 export default Todolist;
+
+
